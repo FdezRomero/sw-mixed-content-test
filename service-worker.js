@@ -8,7 +8,10 @@
 
 self.addEventListener('fetch', function(event) {
   console.log('Event:', event);
-  event.stopImmediatePropagation();
+  if (event.request.url.indexOf('http://' === 0) {
+    event.stopImmediatePropagation();
+    console.log('Bypassing HTTP request to "' + event.request.url + '"');
+  }
 });
 
 importScripts('./sw-toolbox.js');
@@ -26,9 +29,4 @@ self.toolbox.options = {
 self.toolbox.router.any('/*', self.toolbox.networkFirst);
 
 // Don't cache any 3rd party content, as it may not be HTTPS and fail
-self.toolbox.router.default = function defaultHandler(request, values, options) {
-  console.log('Request:', request);
-  console.log('Values:', values);
-  console.log('Options:', options);
-  return fetch(request);
-};
+self.toolbox.router.default = self.toolbox.networkFirst;
