@@ -8,7 +8,7 @@
 importScripts('./sw-toolbox.js');
 
 self.toolbox.options = {
-  debug: false,
+  debug: true,
   networkTimeoutSeconds: 30,
   cache: {
     name: 'cache',
