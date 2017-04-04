@@ -29,5 +29,5 @@ self.toolbox.router.default = function defaultHandler(request, values, options) 
   console.log('Request:', request);
   console.log('Values:', values);
   console.log('Options:', options);
-  return fetch(request);
+  // return fetch(request);
 };
