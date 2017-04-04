@@ -8,7 +8,7 @@
 
 self.addEventListener('fetch', function(event) {
   console.log('Event:', event);
-  if (event.request.url.indexOf('http://' === 0) {
+  if (event.request.url.indexOf('http://') === 0) {
     event.stopImmediatePropagation();
     console.log('Bypassing HTTP request to "' + event.request.url + '"');
   }
