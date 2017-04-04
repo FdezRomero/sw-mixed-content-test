@@ -20,4 +20,9 @@ self.toolbox.options = {
 self.toolbox.router.any('/*', self.toolbox.networkFirst);
 
 // Don't cache any 3rd party content, as it may not be HTTPS and fail
-self.toolbox.router.default = self.toolbox.networkOnly;
+self.toolbox.router.default = function defaultHandler(request, values, options) {
+  console.log('Request:', request);
+  console.log('Values:', values);
+  console.log('Options:', options);
+  return fetch(request);
+};
